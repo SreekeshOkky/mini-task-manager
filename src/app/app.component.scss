@@ -1,0 +1,14 @@
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: #00000026;
+    top: 0;
+    left: 0;
+    z-index: 1002;
+    display: flex;
+    justify-content: center;
+    mat-spinner {
+        align-self: center;
+    }
+}

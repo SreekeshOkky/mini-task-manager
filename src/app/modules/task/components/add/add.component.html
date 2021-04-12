@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Task</h1>
+<div mat-dialog-content>
+    <form [formGroup]="taskForm">
+        <mat-form-field appearance="standard">
+            <mat-label>Message</mat-label>
+            <input matInput placeholder="Enter the task detail" formControlName="message">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Priority</mat-label>
+            <mat-select name="priority" formControlName="priority">
+                <mat-option *ngFor="let node of priorityList" [value]="node.value">
+                    {{node.text}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Due date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="due_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Asignee</mat-label>
+            <mat-select name="food" formControlName="assigned_to">
+                <mat-option *ngFor="let node of userList" [value]="node.id">
+                    {{node.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="saveTask()">Save</button>
+    <button mat-button [mat-dialog-close]>Dismiss</button>
+</div>

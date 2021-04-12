@@ -1,0 +1,31 @@
+<div class="table-wrapper">
+    <button mat-raised-button (click)="openAddTask()"> New Task </button>
+    <div class="filter-wrapper">
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="filterData()" placeholder="Search for message" [(ngModel)]='filterMessage'>
+        </mat-form-field>
+    </div>
+    <div class="tasks-wrapper" cdkDropListGroup>
+        <div class="task-container" *ngFor="let node of priorityList">
+            <div cdkDropList [cdkDropListData]="taskDetailList[node.value]" class="task-list"
+                (cdkDropListDropped)="drop($event, node.value)">
+                <h2>{{node.text}}</h2>
+                <div class="task-box" *ngFor="let task of taskDetailList[node.value]" cdkDrag>
+                    <p class="message"> {{task.message}} </p>
+                    <p *ngIf="task.assignee"> <mat-icon mat-icon-button><span class="material-icons">account_circle</span></mat-icon> {{task.assignee}} </p>
+                    <p *ngIf="task.due_date"> <mat-icon mat-icon-button><span class="material-icons"><span class="material-icons">calendar_today</span></span></mat-icon> {{task.due_date | date}} </p>
+                    <div>
+                        <button mat-raised-button (click)="editTask(task)">
+                            Edit
+                        </button>
+                        <button mat-raised-button color="warn" (click)="openDeleteDialog(task)">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
